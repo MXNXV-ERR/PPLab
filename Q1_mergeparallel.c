@@ -2,22 +2,16 @@
 #include<omp.h>
 #include<stdlib.h>
 
-void merge(int a[],int l,int mid,int h){
-    int n1 = mid-l+1;
-    int n2 = h-mid;
-    int arr1[n1],arr2[n2];
-    for(int i=0;i<n1;i++) arr1[i] = a[l+i];
-    for(int i=0;i<n2;i++) arr2[i] = a[mid+1+i];
-    int i=0,j=0,k=l;
-
-    while(i<n1 && j<n2){
-        if(arr1[i]<=arr2[j])
-            a[k++] = arr1[i++];
-        else
-            a[k++] = arr2[j++];
-    }
-    while(i<n1) a[k++] = arr1[i++];
-    while(j<n2)a[k++] = arr2[j++];
+void combine(int a[],int l,int m,int h){
+    int temp[h],i=l,j=m+1,k=l;
+	while(i<=m&&j<=h)
+		temp[k++]=a[i]<=a[j]?a[i++]:a[j++];	
+	while(i<=m)
+		temp[k++]=a[i++];
+	while(j<=h)
+		temp[k++]=a[j++];
+	for(int i=l;i<=h;i++)
+		a[i]=temp[i];
 }
 
 void mergesortParallel(int a[],int l,int h){
@@ -30,7 +24,7 @@ void mergesortParallel(int a[],int l,int h){
             #pragma omp section
             mergesortParallel(a,mid+1,h);
         }
-        merge(a,l,mid,h);
+        combine(a,l,mid,h);
     }
 }
 
@@ -39,10 +33,9 @@ void mergesortSerial(int a[],int l,int h){
         int mid = (l+h)>>1;
         mergesortSerial(a,l,mid);
         mergesortSerial(a,mid+1,h);
-        merge(a,l,mid,h);
+        combine(a,l,mid,h);
     }
 }
-
 
 void main(){
     int num,i;

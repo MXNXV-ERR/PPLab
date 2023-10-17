@@ -1,32 +1,28 @@
-#include<omp.h>
 #include<stdio.h>
-long long fib[1000000];
-long long fibo(long long n)
+#include<omp.h>
+int fib(int n)
 {
-    long long i=0,j=0;
-    if(n==1||n==0)
-    {
-        fib[n]=n;
-        return n;
-    }
-    if(n<0)return 0;
-    #pragma omp task shared(i)
-    i=fibo(n-1);
-    #pragma omp task shared(j)
-    j=fibo(n-2);
-    #pragma omp taskwait
-    fib[n]=i+j;
-    return fib[n];
-
+	int i,j;
+	if(n<2) return n;
+	else {
+		#pragma omp task shared(i) firstprivate(n)
+		i = fib(n-1);
+		#pragma omp task shared(j) firstprivate(n)
+		j = fib(n-2);
+		#pragma omp taskwait
+		return i+j;
+	}
 }
-int main()
+void main()
 {
-    long long n;
-    printf("Enter n");
-    scanf("%lld",&n);
-    #pragma omp parallel
-    fibo(n);
-    for(int i=0;i<n;i++)
-        printf("%lld\t \a",fib[i]);
-
+	int n;
+    printf("Enter n value");
+    scanf("%d",&n);	
+	// omp_set_num_threads(4);
+	#pragma omp num_threads(4) parallel shared(n) 
+    for(int i=0;i<=n;i++)
+	{
+		#pragma omp single
+		printf("fib(%d) = %d\n",i,fib(i));
+	}	
 }

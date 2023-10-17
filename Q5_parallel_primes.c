@@ -2,27 +2,38 @@
 #include<stdlib.h>
 #include<omp.h>
 
-int j=1,primes[1000],x = 3;
-
-int isPrime(int x){
-//#pragma omp parallel for
-	for(int i=2;i<x/2;i++)
-		if(x%i==0)
-			return 0;
-	return 1;
+int isPrime(int n){
+  if(n < 2)
+    return 0;
+  for(int i = 2; i <= n/2; i++)
+    if(n%i == 0)
+      return 0;
+  return 1;
 }
 
-void main(){
-	#pragma omp parallel
-	while(j<1000){
-		if(isPrime(x))
-		{	primes[j]=x;
-			#pragma omp atomic
-			j++;
-		}	
-		#pragma omp atomic
-		x+=2;
-	}	
-	printf("%d",j);
-}
+int main(){
+	int n;
+	printf("Enter n value");
+	scanf("%d",&n);	
 
+	//parallel
+	double start = omp_get_wtime();
+	#pragma omp parallel for
+	for(int i = 1; i <= n;i++)
+		if(isPrime(i))
+			printf("process : %d , %d \n",omp_get_thread_num(),i);
+	double end = omp_get_wtime();
+	double para = end-start;
+
+	//serial
+	start = omp_get_wtime();
+	for(int i = 1; i <= n;i++)
+		if(isPrime(i))
+			printf("process : %d , %d \n",omp_get_thread_num(),i);
+	end = omp_get_wtime();
+	double seri = end -start;
+
+	//print times
+	printf("The time taken for parallel is %lf\n\n ",para);
+	printf("The time taken for serial is %lf ",seri);
+}
