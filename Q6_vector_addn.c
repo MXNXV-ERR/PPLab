@@ -28,5 +28,8 @@ void main(){
 	}
 
 	vector_addn(n,c,a,b);
-	//printf("%d\n",ops);
+	for (int i = 0; i < n; i++)
+		printf("%d + %d = %d\n",a[i],b[i],c[i]);
+	
+	printf("%d\n",ops);
 }
