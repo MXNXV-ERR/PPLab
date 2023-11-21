@@ -2,13 +2,13 @@
 #include<mpi.h>
 #include<string.h>
 #include<stdlib.h>
-void main(int argc, char *argv[])
+void main()
 {
 	char inmsg[100],outmsg[100] = "welcome to ise!";
 	int numtasks,rank,dest,source,rc,count,tag=1;
 	MPI_Status stat;
 
-	MPI_Init(&argc,&argv);
+	MPI_Init(NULL,NULL);
 	MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
 	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
 	

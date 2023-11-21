@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "q1_send_recv": "c"
+        "q1_send_recv": "c",
+        "THE_MPI_TEMPLATE.C": "cpp",
+        "type_traits": "cpp"
     }
 }
