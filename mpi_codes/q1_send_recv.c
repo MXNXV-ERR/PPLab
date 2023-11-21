@@ -4,23 +4,23 @@
 #include<stdlib.h>
 void main()
 {
-	char inmsg[100],outmsg[100] = "welcome to ise!";
-	int numtasks,rank,dest,source,rc,count,tag=1;
-	MPI_Status stat;
-
+	int world_size,world_rank;
 	MPI_Init(NULL,NULL);
-	MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
-	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+	MPI_Comm_size(MPI_COMM_WORLD,&world_size);
+	MPI_Comm_rank(MPI_COMM_WORLD,&world_rank);
+	MPI_Status stat;
 	
-	if(rank==0){
+	char inmsg[100],outmsg[100] = "welcome to ise!";
+	int dest,source,count,tag=1;
+	if(world_rank==0){
 		dest = 1; //setting dest as rank 1
-		rc = MPI_Send(&outmsg,strlen(outmsg),MPI_CHAR,dest,tag,MPI_COMM_WORLD); 
+		MPI_Send(&outmsg,strlen(outmsg),MPI_CHAR,dest,tag,MPI_COMM_WORLD); 
 	}
-	else if(rank==1){
+	else if(world_rank==1){
 		source=0; // mentioning source as rank 0
-		rc = MPI_Recv(&inmsg,strlen(outmsg),MPI_CHAR,source,tag,MPI_COMM_WORLD,&stat);
+		MPI_Recv(&inmsg,strlen(outmsg),MPI_CHAR,source,tag,MPI_COMM_WORLD,&stat);
 	}
-	rc = MPI_Get_count(&stat,MPI_CHAR,&count);
-	printf("TASK %d, received %d char(s) task from %d with tag %d and msg is %s\n",rank,count,stat.MPI_SOURCE,stat.MPI_TAG,inmsg);
+	MPI_Get_count(&stat,MPI_CHAR,&count);
+	printf("TASK %d, received %d char(s) task from %d with tag %d and msg is %s\n",world_rank,count,stat.MPI_SOURCE,stat.MPI_TAG,inmsg);
 	MPI_Finalize();
 }
