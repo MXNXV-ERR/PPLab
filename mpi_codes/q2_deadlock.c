@@ -17,7 +17,7 @@ void main(int c,char *v[]){
         MPI_Send(&out,1,MPI_INT,dest,tag1,MPI_COMM_WORLD);
         MPI_Recv(&in,1,MPI_INT,source,tag2,MPI_COMM_WORLD,&stat);
     }
-   else if(rank==1){  
+    else if(rank==1){  
         dest = 0;
         source = 0;
         MPI_Recv(&in,1,MPI_INT,source,tag1,MPI_COMM_WORLD,&stat);//change tags here for deadlock
