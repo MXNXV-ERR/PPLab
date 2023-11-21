@@ -13,7 +13,9 @@ int main() {
     }
     int recv_data; // Each process will receive one element
     // Scatter the data from the root process to all processes
-    MPI_Scatter(data, 1, MPI_INT, &recv_data, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Scatter(data, 1, MPI_INT, 
+                &recv_data, 1, MPI_INT, 
+                0, MPI_COMM_WORLD);
     // Each process prints the received data
     printf("Process %d received data %d\n", world_rank, recv_data);
     MPI_Finalize();
