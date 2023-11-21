@@ -1,6 +1,6 @@
 # Below shiii is common for all the progs
 
-```
+``` c 
 #include <stdio.h>
 #include <mpi.h>
 void main() {
@@ -9,8 +9,8 @@ void main() {
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
     (optinal) MPI_Status stat; // required only if using mp_recv(), last arg
-    //this if condition not compulsory
     
+    //this if condition not compulsory
     if (world_size < 2) {
         printf("World size must be greater than 1\n");
         MPI_Finalize();
@@ -29,6 +29,18 @@ void main() {
 # Q1,Q2,Q3,Q4,Q5
 
 ### Q1
+
+Simple sending and recieving 
+```r
+MPI_Send(*buf,count,mpi_datatype,dest,tag,MPI_COMM_WORLD)
+
+buf : message to be sent
+count : size of msg
+mpi_datatype : type of data (MPI_Char,MPI_Int.....)
+dest : destination
+tag : i am still trynna figure it out
+```
+
 ```
 if(world_rank==0)
     MPI_Send
