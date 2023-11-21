@@ -26,7 +26,7 @@ void main() {
 ```
 # Some really annoying functions
 ### MPI_Send,MPI_Ssend
-```r
+```c
 MPI_Send,MPI_Ssend same
 MPI_Send(*buf,count,mpi_datatype,dest,tag,MPI_COMM_WORLD)
 
@@ -37,12 +37,12 @@ dest : destination
 tag : i am still trynna figure it out
 ```
 ### MPI_Isend
-```
+```c
 MPI_Isend(*buf,count,mpi_datatype,dest,tag,MPI_COMM_WORLD,*request)
 request : request object , has some request info
 ```
 ### MPI_Recv
-```r
+```c
 MPI_Recv(*buf,count,mpi_datatype,src,tag,MPI_COMM_WORLD,*status)
 
 buf : variavle where it has to be recieved
@@ -53,10 +53,26 @@ tag : i am still trynna figure it out
 status : status object , has some status info
 ```
 ### MPI_Irecv
-```
+```c
 MPI_Irecv(*buf,count,mpi_datatype,src,tag,MPI_COMM_WORLD,*request)
 request : request object , has some request info
+```
+### MPI_Wait
+```c
+MPI_Wait(*request,*status)
+status : status object , has some status info
+request : request object , has some request info
+```
+##### MPI_Status stat; this is how status object is declared
+##### MPI_Request req; this is how request object is declared
 
+
+### MPI_Sendrecv
+```c
+MPI_Sendrecv(*sendbuf, sendcount, send_mpi_datatype,dest,sendtag,
+            *recvbuf, recvcount,  recv_mpi_datatype,src,recvtag,
+            MPI_COMM_WORLD,*status)
+think!!!!!!!
 ```
 
 
@@ -114,7 +130,7 @@ if (world_rank == 0) {
 
 ```
 // DO SOMEthing above
-MPI_Barrier(MPI_COMM_WORLD) // make sure all above things are completed then only move to below 
+MPI_Barrier(MPI_COMM_WORLD); // make sure all above things are completed then only move to below 
 // DO SOMEthing below
 ```
 
@@ -122,7 +138,12 @@ MPI_Barrier(MPI_COMM_WORLD) // make sure all above things are completed then onl
 # Q7
  broad cast it seems 
 
- ```MPI_Bcast```
+```
+MPI_Bcast(*buf,count,mpi_datatype,root,MPI_COMM_WORLD)
+
+buf , count ,mpi_datatype : this u should know by now
+root : rank of broadcasting process/thread
+```
 
 
 # Q8,Q9,Q10
