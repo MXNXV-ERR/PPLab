@@ -181,7 +181,7 @@ op : the operation to reduce like mpi_max mpi_min mpi_sum mpi_prod
 ```c
 MPI_Allreduce
 
-same syntax as MPI_Reduce
+same syntax as MPI_Reduce , but "root" parameter no reuired as all processes recieve the broadcasted data
 ```
 
 ### MPI_Reduce vs MPI_Allreduce
