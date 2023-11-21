@@ -28,7 +28,7 @@ void main() {
 
 # Q1,Q2,Q3,Q4,Q5
 
-## Q1
+### Q1
 ```
 if(world_rank==0)
     MPI_Send
@@ -36,7 +36,7 @@ else if(world_rank==1)
     MPI_Recv
 ```
 
-## Q2
+### Q2
 ```
 if(world_rank==0)
 {   MPI_Send
@@ -48,10 +48,10 @@ else if(world_rank==1)
 }
 ```
 
-## Q3
+### Q3
     same as Q2 but MPI_Send -> MPI_Ssend
 
-## Q4
+### Q4
 ```
 if (world_rank == 0) {
     MPI_Isend
@@ -66,7 +66,7 @@ if (world_rank == 0) {
 }
 ```
 
-## Q5
+### Q5
     what shit we did in last 4 questions can be done in single line using 
 ```MPI_Sendrecv```
 
@@ -74,13 +74,40 @@ if (world_rank == 0) {
 # Q6
 
     6th standard program this is by-heart and go
-    
+
 ```
 // DO SOMEthing above
 MPI_Barrier(MPI_COMM_WORLD) // make sure all above things are completed then only move to below 
 // DO SOMEthing below
 ```
 
+
+# Q7
+ broad cast it seems 
+
+ ```MPI_Bcast```
+
+
+# Q8,Q9,Q10
+
+### Q8
+
+```MPI_Gather```
+
+### Q9
+
+```MPI_Scatter```
+
+### Q10
+ above both together
+
+
+# Q11,Q12
+
+### Q11
+```MPI_Reduce```
+### Q12
+```MPI_Allreduce```
 
     
 
