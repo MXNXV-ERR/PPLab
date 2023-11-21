@@ -24,7 +24,3 @@ void main(int argc, char *argv[])
 	printf("TASK %d, received %d char(s) task from %d with tag %d and msg is %s\n",rank,count,stat.MPI_SOURCE,stat.MPI_TAG,inmsg);
 	MPI_Finalize();
 }
-/*
-For deadlock condition
-interchange the tags in else if part only
-*/
