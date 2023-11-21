@@ -78,7 +78,7 @@ think!!!!!!!
 
 # Q1,Q2,Q3,Q4,Q5
 
-### Q1
+### Q1 ,Send and recieve
 
 Simple sending and recieving 
 
@@ -89,7 +89,7 @@ else if(world_rank==1)
     MPI_Recv
 ```
 
-### Q2
+### Q2 show deadlock
 ```
 if(world_rank==0)
 {   MPI_Send
@@ -101,10 +101,10 @@ else if(world_rank==1)
 }
 ```
 
-### Q3
+### Q3 deadlock avoidance using sync
     same as Q2 but MPI_Send -> MPI_Ssend
 
-### Q4
+### Q4 deadlock avoidance using non blocking calls
 ```
 if (world_rank == 0) {
     MPI_Isend
@@ -119,12 +119,12 @@ if (world_rank == 0) {
 }
 ```
 
-### Q5
+### Q5 use MPI_Sendrecv
     what shit we did in last 4 questions can be done in single line using 
 ```MPI_Sendrecv```
 
 
-# Q6
+# Q6 show MPI_Barrier
 
     6th standard program this is by-heart and go
 
@@ -135,7 +135,7 @@ MPI_Barrier(MPI_COMM_WORLD); // make sure all above things are completed then on
 ```
 
 
-# Q7
+# Q7 Broadcasting from 1 thread
 broad cast it seems 
 
 ```
@@ -148,7 +148,7 @@ root : rank of broadcasting process/thread
 
 # Q8,Q9,Q10
 
-### Q8
+### Q8 gather
 
 ```c
 MPI_Gather( *sendbuf,sendcount,mpi_datatype,
@@ -156,7 +156,7 @@ MPI_Gather( *sendbuf,sendcount,mpi_datatype,
             root, MPI_COMM_WORLD)
 ```
 
-### Q9
+### Q9 scatter
 
 ```c
 MPI_Scatter(*sendbuf, sendcount, mpi_datatype,
@@ -164,16 +164,30 @@ MPI_Scatter(*sendbuf, sendcount, mpi_datatype,
             root,MPI_COMM_WORLD)
 ```
 
-### Q10
+### Q10 both together
  above both together
 
 
 # Q11,Q12
 
-### Q11
-```MPI_Reduce```
-### Q12
-```MPI_Allreduce```
+### Q11 MPI_Reduce
+```c
+MPI_Reduce(*sendbuf, *recvbuf, count, mpi_datatype,
+               op,root, MPI_COMM_WORLD)
+
+op : the operation to reduce like mpi_max mpi_min mpi_sum mpi_prod
+```
+### Q12 MPI_Allreduce
+```c
+MPI_Allreduce
+
+same syntax as MPI_Reduce
+```
+
+### MPI_Reduce vs MPI_Allreduce
+
+- Reduce will compute and store in that particular rank
+- Allreduce will compute and broadcast to all other ranks in the world
 
     
 
