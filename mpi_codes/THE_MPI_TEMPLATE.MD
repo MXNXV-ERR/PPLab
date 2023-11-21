@@ -24,13 +24,7 @@ void main() {
     MPI_Finalize();
 }
 ```
-
-
-# Q1,Q2,Q3,Q4,Q5
-
-### Q1
-
-Simple sending and recieving 
+# Some really annoying functions
 ```r
 MPI_Send(*buf,count,mpi_datatype,dest,tag,MPI_COMM_WORLD)
 
@@ -40,6 +34,23 @@ mpi_datatype : type of data (MPI_Char,MPI_Int.....)
 dest : destination
 tag : i am still trynna figure it out
 ```
+```r
+MPI_Recv(*buf,count,mpi_datatype,src,tag,MPI_COMM_WORLD,*status)
+
+buf : variavle where it has to be recieved
+count : siz of msg
+mpi_datatype : type of data (MPI_Char,MPI_Int.....)
+src : source
+tag : i am still trynna figure it out
+status : status object , has some status info
+```
+
+
+# Q1,Q2,Q3,Q4,Q5
+
+### Q1
+
+Simple sending and recieving 
 
 ```
 if(world_rank==0)
