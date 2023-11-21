@@ -136,7 +136,7 @@ MPI_Barrier(MPI_COMM_WORLD); // make sure all above things are completed then on
 
 
 # Q7
- broad cast it seems 
+broad cast it seems 
 
 ```
 MPI_Bcast(*buf,count,mpi_datatype,root,MPI_COMM_WORLD)
@@ -150,11 +150,19 @@ root : rank of broadcasting process/thread
 
 ### Q8
 
-```MPI_Gather```
+```c
+MPI_Gather( *sendbuf,sendcount,mpi_datatype,
+            *recvbuf,recvcount,mpi_datatype,
+            root, MPI_COMM_WORLD)
+```
 
 ### Q9
 
-```MPI_Scatter```
+```c
+MPI_Scatter(*sendbuf, sendcount, mpi_datatype,
+            *recvbuf, recvcount, mpi_datatype, 
+            root,MPI_COMM_WORLD)
+```
 
 ### Q10
  above both together
