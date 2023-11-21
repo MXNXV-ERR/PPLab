@@ -25,7 +25,9 @@ void main() {
 }
 ```
 # Some really annoying functions
+### MPI_Send,MPI_Ssend
 ```r
+MPI_Send,MPI_Ssend same
 MPI_Send(*buf,count,mpi_datatype,dest,tag,MPI_COMM_WORLD)
 
 buf : message to be sent
@@ -34,6 +36,12 @@ mpi_datatype : type of data (MPI_Char,MPI_Int.....)
 dest : destination
 tag : i am still trynna figure it out
 ```
+### MPI_Isend
+```
+MPI_Isend(*buf,count,mpi_datatype,dest,tag,MPI_COMM_WORLD,*request)
+request : request object , has some request info
+```
+### MPI_Recv
 ```r
 MPI_Recv(*buf,count,mpi_datatype,src,tag,MPI_COMM_WORLD,*status)
 
@@ -43,6 +51,12 @@ mpi_datatype : type of data (MPI_Char,MPI_Int.....)
 src : source
 tag : i am still trynna figure it out
 status : status object , has some status info
+```
+### MPI_Irecv
+```
+MPI_Irecv(*buf,count,mpi_datatype,src,tag,MPI_COMM_WORLD,*request)
+request : request object , has some request info
+
 ```
 
 
