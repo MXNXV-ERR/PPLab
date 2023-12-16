@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<omp.h>
 #include<stdlib.h>
-
+//STFU u can`t be serious
 void calcArea(double a,double b,int n,double *g_area);
 inline static double f(double x);
 
