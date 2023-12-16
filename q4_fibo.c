@@ -19,10 +19,10 @@ void main()
     printf("Enter n value");
     scanf("%d",&n);	
 	// omp_set_num_threads(4);
-	#pragma omp num_threads(4) parallel shared(n) 
+	#pragma omp parallel num_threads(4) shared(n) 
     for(int i=0;i<=n;i++)
 	{
 		#pragma omp single
-		printf("fib(%d) = %d\n",i,fib(i));
+		printf("fib(%d) = %d   %d \n",i,fib(i),omp_get_thread_num());
 	}	
 }
