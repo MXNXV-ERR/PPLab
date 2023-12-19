@@ -14,6 +14,7 @@ int main(int argc,char* argv[])
 	end = omp_get_wtime();
 	printf("Sum=%f in serial took %fs\n",4*sum,end-start);
 
+	sum=0;
 	start = omp_get_wtime();
 #pragma omp parallel for num_threads(t_c) reduction(+:sum)
 	for(int i=0;i<strtol(argv[2],NULL,10);i++)
