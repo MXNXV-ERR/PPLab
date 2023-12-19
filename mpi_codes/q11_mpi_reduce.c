@@ -5,7 +5,7 @@ int main() {
     MPI_Init(NULL, NULL);
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     // Each process will use its rank as the data
-    int data = world_rank;
+    int data = world_rank+1;
     int max_val, min_val, sum, prod;
     // Reduce to find the maximum value
     MPI_Reduce(&data, &max_val, 1, MPI_INT, MPI_MAX, 0, MPI_COMM_WORLD);
