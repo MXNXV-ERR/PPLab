@@ -1,4 +1,5 @@
 ///////////Math.h don`t forget -lm during compilation//////////////////////
+///////// this code need no cmd line args //////////////////////
 #include<stdio.h>
 #include<omp.h>
 #include<math.h>
